@@ -1,0 +1,16 @@
+#!/bin/sh
+
+export LD_PRELOAD="/usr/lib/interposers/libinterpose_memcpy.so"
+
+if [ "$1" = "--strace" ]
+then
+	shift
+	unset INTERPOSE_MEMCPY_LOGFILE
+	exec strace -e write -s 120 "$@"
+else
+	if [ -z "${INTERPOSE_MEMCPY_LOGFILE}" ]
+	then
+		export INTERPOSE_MEMCPY_LOGFILE="/tmp/memcpy.log"
+	fi
+	exec "$@"
+fi
