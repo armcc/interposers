@@ -3,7 +3,8 @@ CC := gcc
 CFLAGS := -O2
 LDFLAGS := -Wl,-O1 -Wl,--hash-style=gnu
 
-TARGETS := libinterpose_memcpy.so
+TARGETS := libinterpose_memcpy.so \
+           libinterpose_syscall.so
 
 all: $(TARGETS)
 

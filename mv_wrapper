@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for mv in /usr/bin/mv /bin/mv
+do
+	exec interpose_syscall $mv "$@"
+done
